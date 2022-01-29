@@ -23,7 +23,7 @@ const Login: React.FC<LoginProps> = (props) => {
 
   const onSubmit: SubmitHandler<LoginFormInput> = async (data) => {
     const rawResponse = await fetch(
-      "https://cors-anywhere.herokuapp.com/https://api.polban.ac.id/mpm/login",
+      `${process.env.REACT_APP_REVERSE_PROXY}https://api.polban.ac.id/mpm/login`,
       {
         method: "POST",
         headers: {

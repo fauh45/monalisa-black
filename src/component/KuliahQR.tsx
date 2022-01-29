@@ -37,7 +37,7 @@ const KuliahQR: React.FC<KuliahQRProps> = (props) => {
     );
 
     const rawResponse = await fetch(
-      "https://cors-anywhere.herokuapp.com/https://api.polban.ac.id/mpm/getKuliahToday",
+      `${process.env.REACT_APP_REVERSE_PROXY}https://api.polban.ac.id/mpm/getKuliahToday`,
       {
         method: "POST",
         headers: {
