@@ -61,26 +61,26 @@ const KuliahQR: React.FC<KuliahQRProps> = (props) => {
   return (
     <Box>
       {!kuliahData ? (
-        <Text>Mengambil Data Kuliah...</Text>
+        <Text textAlign="center">Mengambil Data Kuliah...</Text>
       ) : (
         <Box align="center">
-          <Text>
+          <Text textAlign="center">
             Status Jadwal :{" "}
             {kuliahData.status_jadwal === 1 ? "Ada Jadwal" : "Tidak Ada Jadwal"}
           </Text>
-          <Text>
+          <Text textAlign="center">
             Status Vaksin :{" "}
             {kuliahData.status_vaksin === 1
               ? "Sudah Vaksin"
               : "Belum Vaksin/Belum isi surat vaksin"}
           </Text>
-          <Text>
+          <Text textAlign="center">
             Status Izin Orang Tua :{" "}
             {kuliahData.status_vaksin === 1
               ? "Sudah Diizinkan"
               : "Belum isi surat izin orang tua"}
           </Text>
-          <Text>
+          <Text textAlign="center">
             Status Verifikasi Prodi :{" "}
             {kuliahData.status_vaksin === 1
               ? "Sudah Diverifikasi"
@@ -89,7 +89,9 @@ const KuliahQR: React.FC<KuliahQRProps> = (props) => {
 
           <Box pad={{ top: "small" }}>
             {!kuliahData.data.kode_qr ? (
-              <Text color="status-error">Tidak ada izin perkuliahan</Text>
+              <Text color="status-error" textAlign="center">
+                Tidak ada izin perkuliahan
+              </Text>
             ) : (
               <QRCode value={kuliahData.data.kode_qr} />
             )}

@@ -1,12 +1,19 @@
 import { Box, Button, Header, Heading, Text } from "grommet";
 import React from "react";
+import IzinKhususQR from "../component/IzinKhususQR";
 import KuliahQR from "../component/KuliahQR";
 import { useLoginData } from "../context/LoginDataProvider";
 
 interface HomeProps {}
 
+enum HomeState {
+  KULIAH,
+  IZIN,
+}
+
 const Home: React.FC<HomeProps> = (props) => {
   const { data, setData } = useLoginData();
+  const [state, setState] = React.useState<HomeState>(HomeState.KULIAH);
 
   const logOut = () => {
     setData!(undefined);
@@ -35,14 +42,30 @@ const Home: React.FC<HomeProps> = (props) => {
         NIM {data?.nim}
       </Heading>
 
-      <Box align="center" alignContent="center" pad={{ top: "medium" }}>
-        <Heading level="4" margin="0">
-          Data QR Kuliah
-        </Heading>
-        <KuliahQR />
+      <Box pad={{ top: "medium" }}>
+        <Button
+          secondary
+          label={`Ambil Izin ${
+            state === HomeState.KULIAH ? "Khusus Kuliah" : "Kuliah"
+          } Hari Ini`}
+          fill={"horizontal"}
+          onClick={() => {
+            setState(
+              state === HomeState.KULIAH ? HomeState.IZIN : HomeState.KULIAH
+            );
+          }}
+        />
       </Box>
 
-      <Box align="center" pad={{ top: "medium" }}>
+      <Box align="center" alignContent="center" pad={{ top: "medium" }}>
+        <Heading level="4" margin="0">
+          Data QR {state === HomeState.KULIAH ? "Kuliah" : "Izin Khusus"}
+        </Heading>
+
+        {state === HomeState.KULIAH ? <KuliahQR /> : <IzinKhususQR />}
+      </Box>
+
+      <Box align="center" pad={{ top: "small" }}>
         <Text style={{ fontSize: "0.8em" }}>
           Tweet{" "}
           <a

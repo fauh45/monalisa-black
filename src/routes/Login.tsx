@@ -54,7 +54,7 @@ const Login: React.FC<LoginProps> = (props) => {
       <Heading level="3" margin="small">
         Login
       </Heading>
-      <Text>
+      <Text textAlign="center">
         Gunakan login akademik Polban untuk mengakses versi unofficial MONALISA.
       </Text>
 
