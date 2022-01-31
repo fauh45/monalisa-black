@@ -59,11 +59,11 @@ const KuliahQR: React.FC<KuliahQRProps> = (props) => {
   }
 
   return (
-    <Box>
+    <Box overflow="visible">
       {!kuliahData ? (
         <Text textAlign="center">Mengambil Data Kuliah...</Text>
       ) : (
-        <Box align="center">
+        <Box align="center" overflow={{ vertical: "scroll" }}>
           <Text textAlign="center">
             Status Jadwal :{" "}
             {kuliahData.status_jadwal === 1 ? "Ada Jadwal" : "Tidak Ada Jadwal"}
@@ -87,7 +87,7 @@ const KuliahQR: React.FC<KuliahQRProps> = (props) => {
               : "Belum Diverifikasi"}
           </Text>
 
-          <Box pad={{ top: "small" }}>
+          <Box pad={{ top: "small" }} overflow="visible" flex={false}>
             {!kuliahData.data.kode_qr ? (
               <Text color="status-error" textAlign="center">
                 Tidak ada izin perkuliahan

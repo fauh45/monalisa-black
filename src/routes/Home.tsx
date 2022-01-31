@@ -20,7 +20,7 @@ const Home: React.FC<HomeProps> = (props) => {
   };
 
   return (
-    <Box fill>
+    <Box fill="horizontal">
       <Header background="brand" align="center" margin={{ vertical: "small" }}>
         <Box pad="small">
           <Text>MONALISA-unofficial</Text>
