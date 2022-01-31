@@ -87,7 +87,7 @@ const KuliahQR: React.FC<KuliahQRProps> = (props) => {
               : "Belum Diverifikasi"}
           </Text>
 
-          <Box pad={{ top: "small" }} overflow="visible" flex={false}>
+          <Box pad={{ vertical: "small" }} overflow="scroll" flex={false}>
             {!kuliahData.data.kode_qr ? (
               <Text color="status-error" textAlign="center">
                 Tidak ada izin perkuliahan
