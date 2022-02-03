@@ -36,22 +36,43 @@ const KuliahQR: React.FC<KuliahQRProps> = (props) => {
       "base64"
     );
 
-    const rawResponse = await fetch(
-      `${process.env.REACT_APP_REVERSE_PROXY}https://api.polban.ac.id/mpm/getKuliahToday`,
-      {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-type": "application/json",
-          Authorization: `Bearer ${authToken}`,
-        },
-        referrerPolicy: "unsafe-url",
-        body: JSON.stringify({ nim: data?.nim }),
-      }
-    );
-    const result: GetKuliahResponse = await rawResponse.json();
+    try {
+      const rawResponse = await fetch(
+        `${process.env.REACT_APP_REVERSE_PROXY}https://api.polban.ac.id/mpm/getKuliahToday`,
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-type": "application/json",
+            Authorization: `Bearer ${authToken}`,
+          },
+          referrerPolicy: "unsafe-url",
+          body: JSON.stringify({ nim: data?.nim }),
+        }
+      );
+      const result: GetKuliahResponse = await rawResponse.json();
 
-    setKuliahData(result);
+      setKuliahData(result);
+    } catch (e) {
+      console.error(e);
+      console.info("Error getting data, generating it locally instead");
+
+      setKuliahData({
+        data: {
+          kode_qr: Buffer.from(
+            `${data?.username}:${new Date().toLocaleDateString("en-CA")}`
+          ).toString("base64"),
+          nim: data?.username || "",
+        },
+        jml_data: 1,
+        message: "",
+        status: 1,
+        status_jadwal: 1,
+        status_ortu: 1,
+        status_vaksin: 1,
+        status_ver: 1,
+      });
+    }
   };
 
   if (kuliahData && kuliahData.status === 2) {
