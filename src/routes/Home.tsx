@@ -1,3 +1,4 @@
+import splitbee from "@splitbee/web";
 import { Box, Button, Header, Heading, Text } from "grommet";
 import React from "react";
 import IzinKhususQR from "../component/IzinKhususQR";
@@ -16,6 +17,8 @@ const Home: React.FC<HomeProps> = (props) => {
   const [state, setState] = React.useState<HomeState>(HomeState.KULIAH);
 
   const logOut = () => {
+    splitbee.reset();
+
     setData!(undefined);
   };
 

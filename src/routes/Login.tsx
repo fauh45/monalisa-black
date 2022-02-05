@@ -1,9 +1,11 @@
+import splitbee from "@splitbee/web";
 import { Box, TextInput, Text, Button, Heading } from "grommet";
 import React from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { Navigate } from "react-router-dom";
 import { LoginData } from "../context/LoginDataContext";
 import { useLoginData } from "../context/LoginDataProvider";
+import { NIMtoData } from "../helper/nim";
 
 interface LoginProps {}
 
@@ -43,6 +45,8 @@ const Login: React.FC<LoginProps> = (props) => {
         message: "Password/Username tidak benar, coba validasikan kembali",
       });
     } else {
+      await splitbee.user.set(NIMtoData(authData?.username!));
+
       setData!(result.data);
     }
   };
