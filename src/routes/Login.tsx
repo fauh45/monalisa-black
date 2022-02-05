@@ -45,7 +45,7 @@ const Login: React.FC<LoginProps> = (props) => {
         message: "Password/Username tidak benar, coba validasikan kembali",
       });
     } else {
-      await splitbee.user.set(NIMtoData(result.data.username));
+      await splitbee.user.set(await NIMtoData(result.data.username));
 
       setData!(result.data);
     }
