@@ -7,7 +7,7 @@ export const NIMtoData = async (
   nim: string
 ): Promise<{ [key: string]: string }> => {
   return {
-    userId: await hashNIM(nim),
+    userId: "LOGGED-" + (await hashNIM(nim)),
     batch_years: nim.substring(0, 2),
     faculty_code: nim.substring(4, 6),
     nim_personal_removed: nim.substring(0, 6) + "***",
